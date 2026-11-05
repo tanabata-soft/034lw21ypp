@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('初回に全音源が一括ダウンロードされ、キャッシュに揃う', async ({ page }) => {
   await page.goto('/');
-  // 一括ダウンロードが終わると、音源キャッシュに2曲分が揃い、表示は消える
+  // 一括ダウンロードが終わると、音源キャッシュに3曲分（ボーナストラック含む）が揃い、表示は消える
   await expect
     .poll(
       async () =>
@@ -12,7 +12,7 @@ test('初回に全音源が一括ダウンロードされ、キャッシュに�
         }),
       { timeout: 30_000 },
     )
-    .toBe(2);
+    .toBe(3);
   await expect(page.locator('#dl-banner')).toBeHidden();
   await expect(page.locator('body')).toHaveAttribute('data-downloading', '0');
 });
@@ -33,6 +33,10 @@ test('短冊ジャケットが開き、タップで裏面パネルに反転す�
   await expect(nb).toContainText('Night Ambient');
   await expect(nb).toContainText('2:35');
   await expect(nb).toContainText('2:50');
+  // ボーナストラックは BONUS バッジ付きで末尾に載る
+  await expect(nb).toContainText('SALT AND STARLIGHT');
+  await expect(nb).toContainText('BONUS');
+  await expect(nb).toContainText('2:43');
   await expect(nb.locator('#version-line')).toContainText('デジタルシングルCD v');
   await page.locator('#flip').click();
   await expect(page.locator('#flip')).not.toHaveClass(/flipped/);
@@ -51,6 +55,12 @@ test('再生ボタンから1曲目が始まり、「次」で2曲目に進む', 
   expect(lines).toBe(0);
   // 歌詞がなくスクロールできないときは、歌詞用スクロールバーも出ない
   await expect(page.locator('.lyrics-bar')).toBeHidden();
+  // 3曲目（ボーナストラック）は架空の言語の歌で、歌詞行が表示される
+  await page.getByRole('button', { name: '次の曲' }).click();
+  await expect(page.locator('#p-title')).toContainText('SALT AND STARLIGHT');
+  await expect(page.locator('body')).toHaveAttribute('data-track', '2');
+  const bonusLines = await page.locator('#lyrics-box p').count();
+  expect(bonusLines).toBeGreaterThan(0);
 });
 
 test('再生中にトップへ戻ると曲が止まる', async ({ page }) => {
