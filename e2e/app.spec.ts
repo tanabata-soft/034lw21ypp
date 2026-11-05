@@ -49,6 +49,8 @@ test('再生ボタンから1曲目が始まり、「次」で2曲目に進む', 
   // 全曲インストゥルメンタルのため、歌詞行は表示されない
   const lines = await page.locator('#lyrics-box p').count();
   expect(lines).toBe(0);
+  // 歌詞がなくスクロールできないときは、歌詞用スクロールバーも出ない
+  await expect(page.locator('.lyrics-bar')).toBeHidden();
 });
 
 test('再生中にトップへ戻ると曲が止まる', async ({ page }) => {

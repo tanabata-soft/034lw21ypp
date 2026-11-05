@@ -334,10 +334,13 @@ function scrollLyricsToCurrent(smooth: boolean): void {
 function updateLyricsThumb(): void {
   const box = $('#lyrics-box');
   const th = $('#lyrics-thumb');
-  const h = Math.max(6, (box.clientHeight / Math.max(1, box.scrollHeight)) * 100);
   const max = box.scrollHeight - box.clientHeight;
+  // スクロールできない（歌詞がない・1画面に収まる）ときはスクロールバー自体を出さない
+  (th.parentElement as HTMLElement).style.display = max > 0 ? '' : 'none';
+  if (max <= 0) return;
+  const h = Math.max(6, (box.clientHeight / Math.max(1, box.scrollHeight)) * 100);
   th.style.height = `${h}%`;
-  th.style.top = `${max > 0 ? (box.scrollTop / max) * (100 - h) : 0}%`;
+  th.style.top = `${(box.scrollTop / max) * (100 - h)}%`;
 }
 function lyrInteractStart(): void {
   lyrHold = true;
