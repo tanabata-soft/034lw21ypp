@@ -1,0 +1,46 @@
+// このシングルの基本情報と、裏面ノートの文章。
+// エンジン（src/ のほかのファイル）は、このフォルダ（src/album/）のデータだけを差し替えれば
+// 別の作品になるよう作られている。新しい作品の作り方は docs/PRODUCTION.md、
+// シングルの仕様は docs/SINGLE.md を参照。
+
+export const ALBUM: {
+  title: string;
+  catalog: string;
+  format: string;
+  layout: 'album' | 'single';
+} = {
+  /** 題名（表題曲と同名） */
+  title: 'HAMMOCK AT LOW TIDE',
+  /** カタログ番号 */
+  catalog: 'NK-S004',
+  /** 形式の呼び名 */
+  format: 'デジタルシングルCD',
+  /** 形: 'album'（正方形ジャケット＋ブックレット） / 'single'（短冊型ジャケット＋裏面ノート、ブックレットなし） */
+  layout: 'single',
+};
+
+/** 裏ジャケット下部の表記（例: NK-S004 ／ デジタルシングルCD） */
+export const FOOT_NOTE = `${ALBUM.catalog} ／ ${ALBUM.format}`;
+
+/** 裏面ノートの本文（シングルではブックレットの代わりにジャケット裏面へ置く） */
+export const NOTE: string[] = [
+  '干潮の浜辺で生まれた2曲のインストゥルメンタルを、短冊に閉じ込めた。昼の浜と夜の海――同じ岸辺の、ふたつの時間を綴る小さな組曲。',
+  '表題曲は、引き潮のあとの広い砂浜に吊るされたハンモック。桟橋の杭の影、凪いだ水面、ゆるやかなグルーヴに身をまかせて、午後の光のなかでまどろむ。',
+  'カップリングは、銀の瞬きの下で。星座の滲む静かな夜の海を、ゆったりとした響きで描く。昼の余韻を抱いたまま、岸辺は星明かりに沈んでいく。',
+];
+
+/** ライナーノーツ（アルバム形態のブックレット冒頭。本文は NOTE と共通） */
+export const LINER: readonly [string, string, string] = [NOTE[0], NOTE[1], NOTE[2]];
+
+/** ライナーノーツの見出し（アルバム形態のブックレット冒頭2ページ） */
+export const LINER_TITLES: readonly [string, string] = ['短冊に閉じ込めた2曲', '聴き方について'];
+
+/** ブックレット「聴き方について」のページに置く一文（アルバム形態用） */
+export const HOWTO_EXTRA = '再生画面では曲の絵が大きく表示されます。ジャケットをめくると、裏面にノートがあります。';
+
+/** 奥付（シングルでは裏面ノートの下部に置く） */
+export const COLOPHON: string[] = [
+  `『${ALBUM.title}』（全2曲／総再生時間 約5分）`,
+  `${ALBUM.catalog} ― ${ALBUM.format}`,
+  '全曲インストゥルメンタルです。歌詞はありません。',
+];
