@@ -20,8 +20,9 @@ describe('収録データの整合', () => {
     for (const t of TRACKS) {
       expect(SYNC[t.src], `SYNC に ${t.src} がありません`).toBeDefined();
       expect(Array.isArray(SYNC[t.src])).toBe(true);
-      // NK-S004 は全曲インストゥルメンタルのため、歌詞は空配列が正
-      expect(SYNC[t.src].length).toBe(0);
+      // NK-S004: インスト曲は空配列が正。ボーナストラック（架空の言語の歌）は歌詞行を持つ
+      if (t.bonus) expect(SYNC[t.src].length, 'ボーナストラックに歌詞がありません').toBeGreaterThan(0);
+      else expect(SYNC[t.src].length).toBe(0);
     }
     expect(Object.keys(SYNC).length).toBe(TRACKS.length);
   });
