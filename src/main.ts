@@ -16,6 +16,7 @@ import { exposeTestApi, setData, setupDebug } from './debug';
 import { setupInstallGuide } from './install';
 import { setupUpdateBanner } from './pwa';
 import { downloadAllAudio } from './download';
+import { enterGameMode, exitGameMode } from './game/game-main';
 
 const $ = <T extends HTMLElement>(s: string): T => {
   const el = document.querySelector(s);
@@ -109,6 +110,9 @@ let currentView = 'cover';
 
 /* ---------- 画面遷移 ---------- */
 function go(name: string): void {
+  // リズムゲームから出るときは、ゲーム側の後片付け（端スワイプ対策の履歴
+  // ガードの掃除とフルスクリーンの解除）を先にする
+  if (currentView === 'game' && name !== 'game') exitGameMode();
   // トップへ戻っても再生は止めない（シングル・アルバム共通。オーナー指示 2026-11-12。
   // 旧シングル仕様「トップへ戻ると止まる」2026-11-04 は廃止）
   currentView = name;
@@ -136,6 +140,12 @@ $('#btn-play-all').addEventListener('click', () => {
   playTrack(0, true);
 });
 if (!SINGLE) $('#btn-open-tracks').addEventListener('click', () => go('tracks'));
+$('#btn-open-game').addEventListener('click', () => {
+  // リズムゲームに入る時は、CD 側の再生を止める（2つの音が重ならないように）
+  audio.pause();
+  enterGameMode();
+  go('game');
+});
 
 /* ---------- 曲目（裏ジャケット） ---------- */
 function span(cls: string, text: string): HTMLSpanElement {
@@ -617,7 +627,7 @@ setupUpdateBanner($('#update-banner'), $('#update-button'), $('#update-later'));
     });
   }, 600);
 }
-const installButtons = ['#install-open', '#install-open-cover']
+const installButtons = ['#install-open-cover']
   .map((sel) => document.querySelector<HTMLButtonElement>(sel))
   .filter((b): b is HTMLButtonElement => b !== null);
 setupInstallGuide(
