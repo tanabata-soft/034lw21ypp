@@ -23,6 +23,7 @@
 
 ## 今の状態
 
+- v2.0.0 公開記録: PR #11 を squash マージ（merge commit 3d1c3a19d97d6648c520cc953c1361ba09128267）、ブランチ feat/rhythm-game-v2.0.0 は削除済み。GitHub Pages 再デプロイ成功、https://tanabata-soft.github.io/034lw21ypp/ は HTTP 200、配信バンドル index-dV3v5F4q.js がローカル build と一致（134,709 バイト）し、"2.0.0" を含むことを確認済み。CI の check／e2e も通過。ローカル検証: verify（lint／型／単体45件／build／check-dist／check-content）通過、e2e 49件通過（ポート 4182 で実施）、shots 12枚、全曲 hard のオートプレイ完走（hammock 732／glint 749／starlight 697、全てフルコンボ）。
 - v2.0.0（2026-11-25）: リズムゲームを追加（オーナー指示 2026-11-25「全作品リズムゲーム対応＋バージョンは 2.0.0 から数え直す」の一環。旧版数 1.1.1 は台帳ブロックに記録として残した）。エンジン v1.18.0 標準で統合し、モード名は「リズムゲーム」。あわせて旧作の標準化2点（インストール入口はトップ画面のみ＝ブックレット末尾の入口を撤去、インストールダイアログのセンタリング margin: auto）と、音源の MP3 一本化（単位B: MP4/AAC を廃し、正規音源 MP3 192kbps をプレイヤー／ゲーム／生成器で共有。dist 13.5 MB）を行った。
 - 譜面は chartgen（v6-5）で全曲×3難易度を生成: hammock 188/328/732、glint 175/349/749、starlight 198/367/697 ノーツ。two-thumb 違反 0。フリックは全曲 ON（easy 11〜14／normal 16〜24／hard 26〜31 本と他作品の水準内）。
 - 1・2曲目はインストゥルメンタル: 歌詞被覆の対象外（lyrics.json は空配列）とし、FEVER 区間は音響解析（小節 RMS エネルギーの plateau）から決定（hammock 53〜108s・133〜160s、glint 38〜63s・90〜114s・126〜139s）。3曲目 starlight の FEVER は歌詞の反復ブロック 85〜136s、chorus_layer vocal。バラードは全曲 OFF を明示記録（インスト2曲は歌詞スロットなしで対象外。starlight は検出スコア 2 の auto-off で、テンポ・緩急・持続・被覆後の空白の深刻さの実測分類でも OFF）。
