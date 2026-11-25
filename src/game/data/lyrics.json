@@ -1,0 +1,116 @@
+{
+  "hammock": [],
+  "glint": [],
+  "starlight": [
+    {
+      "text": "Ah lay ah no ree",
+      "startMs": 0,
+      "endMs": 7000
+    },
+    {
+      "text": "Sha vah lee ah oh",
+      "startMs": 7000,
+      "endMs": 14000
+    },
+    {
+      "text": "Nol ah veen ah say",
+      "startMs": 14000,
+      "endMs": 21000
+    },
+    {
+      "text": "Dohl chee oh noo rah",
+      "startMs": 21000,
+      "endMs": 28000
+    },
+    {
+      "text": "Seh lah vee am oh",
+      "startMs": 28000,
+      "endMs": 34000
+    },
+    {
+      "text": "Rih nah vah no lee",
+      "startMs": 34000,
+      "endMs": 41000
+    },
+    {
+      "text": "Doh noh may ah see",
+      "startMs": 41000,
+      "endMs": 47000
+    },
+    {
+      "text": "Sha lee ah voh rae",
+      "startMs": 47000,
+      "endMs": 55000
+    },
+    {
+      "text": "Ahn vah lee oh",
+      "startMs": 55000,
+      "endMs": 62000
+    },
+    {
+      "text": "Soh lah no ree",
+      "startMs": 62000,
+      "endMs": 68000
+    },
+    {
+      "text": "Vee noh sae oh",
+      "startMs": 68000,
+      "endMs": 75000
+    },
+    {
+      "text": "Nal ah vee rae",
+      "startMs": 75000,
+      "endMs": 85000
+    },
+    {
+      "text": "Sha vah lee ah oh",
+      "startMs": 85000,
+      "endMs": 95000
+    },
+    {
+      "text": "Soh lah no ree",
+      "startMs": 95000,
+      "endMs": 106000
+    },
+    {
+      "text": "Ahn vah lee oh",
+      "startMs": 106000,
+      "endMs": 115000
+    },
+    {
+      "text": "Soh lah no ree",
+      "startMs": 115000,
+      "endMs": 122000
+    },
+    {
+      "text": "Vee noh sae oh",
+      "startMs": 122000,
+      "endMs": 129000
+    },
+    {
+      "text": "Nal ah vee rae",
+      "startMs": 129000,
+      "endMs": 136000
+    },
+    {
+      "text": "Sha vah lee oh...",
+      "startMs": 136000,
+      "endMs": 143000
+    },
+    {
+      "text": "No ree ah...",
+      "startMs": 143000,
+      "endMs": 150000
+    },
+    {
+      "text": "Ahn vee...",
+      "startMs": 150000,
+      "endMs": 157000
+    },
+    {
+      "text": "Oh...",
+      "startMs": 157000,
+      "endMs": 161000
+    }
+  ]
+}
